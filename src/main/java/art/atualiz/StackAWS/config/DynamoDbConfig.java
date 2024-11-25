@@ -1,4 +1,4 @@
-package art.atualiz.StackAWS.models.config;
+package art.atualiz.StackAWS.config;
 
 import java.net.URI;
 
