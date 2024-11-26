@@ -6,8 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import art.atualiz.StackAWS.consumer.Message;
-import io.awspring.cloud.sqs.operations.SqsTemplate;
+import art.atualiz.StackAWS.services.MsgService;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
@@ -33,12 +32,15 @@ public class StackAwsApplication implements CommandLineRunner {
 	}
 
 	@Autowired
-	private SqsTemplate sqsTemplate;
+	private MsgService msgService;
 
 
 	@Override
 	public void run(String... args) throws Exception {
-		var SQS = "https://localhost.localstack.cloud:4566/000000000000/Fila_EnvioProcessamento";
-		sqsTemplate.send(SQS, new Message("Conectado!"));
+		// var SQS = "https://localhost.localstack.cloud:4566/000000000000/Fila_EnvioProcessamento";
+		// sqsTemplate.send(SQS, new Message("Conectado!"));
+
+		msgService.enviaMsg("Conectado!");
+		
 	}
 	}

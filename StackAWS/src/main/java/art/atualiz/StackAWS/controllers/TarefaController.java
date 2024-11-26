@@ -6,14 +6,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import io.awspring.cloud.dynamodb.DynamoDbTemplate;
 import software.amazon.awssdk.enhanced.dynamodb.Key;
-import software.amazon.awssdk.enhanced.dynamodb.model.QueryConditional;
-import software.amazon.awssdk.enhanced.dynamodb.model.QueryEnhancedRequest;
 import software.amazon.awssdk.enhanced.dynamodb.model.ScanEnhancedRequest;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import art.atualiz.StackAWS.models.TbTarefas;
+import art.atualiz.StackAWS.services.MsgService;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,10 +31,22 @@ public class TarefaController {
     @Autowired
     private DynamoDbTemplate dynamoDbTemplate;
 
-    @GetMapping("/{nome}/{desc}")
-    public ResponseEntity<Void> salvar(@PathVariable("nome") String nome, @PathVariable("desc") String desc) {
+    @Autowired
+    MsgService msgService;
 
-        var tarefa = new TbTarefas(nome, desc);
+    @GetMapping("/{nome}/{desc}")
+    public ResponseEntity<Void> salvar(@PathVariable("nome") String nome, @PathVariable("desc") String desc) throws JsonProcessingException {
+
+        var tarefa = new TbTarefas(nome, desc); //tarefa criada como pendente
+
+        try {
+            msgService.enviaTarefa(tarefa);
+            tarefa.setStatus("Em processo");
+            
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+
         dynamoDbTemplate.save(tarefa);
         
         return ResponseEntity.ok().build();

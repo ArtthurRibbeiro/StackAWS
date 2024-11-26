@@ -1,0 +1,25 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-StackAwsApplication<StackAWS>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "art.atualiz.StackAWS.StackAwsApplication",
+            "projectName": "StackAWS",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=64989 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=StackAWS"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ProcessorAwsApplication<ProcessorAWS>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "art.atualiz.ProcessorAWS.ProcessorAwsApplication",
+            "projectName": "ProcessorAWS",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
