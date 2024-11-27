@@ -7,7 +7,9 @@ import java.util.concurrent.CompletionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import art.atualiz.ProcessorAWS.consumer.Message;
+import com.fasterxml.jackson.core.JsonProcessingException;
+
+import art.atualiz.ProcessorAWS.models.TbTarefas;
 import io.awspring.cloud.sqs.operations.SqsTemplate;
 import software.amazon.awssdk.services.sqs.SqsAsyncClient;
 import software.amazon.awssdk.services.sqs.model.CreateQueueRequest;
@@ -26,8 +28,15 @@ public class MsgService {
     @Autowired
     private SqsAsyncClient sqsAsyncClient;
 
+    @Autowired
+    ObjectMapperService mapperService;
+
 
     String fila = "Fila_RetornoProcessamento";
+
+    public void enviaTarefa(TbTarefas tarefa) throws JsonProcessingException{
+        enviaMsg(mapperService.tarefaParaJson(tarefa));
+    }
 
     public void enviaMsg(String msg) {
 
@@ -39,7 +48,7 @@ public class MsgService {
         }*/
 
         try {
-        sqsTemplate.send(verificaFila(this.fila), new Message("Conectado!"));
+        sqsTemplate.send(verificaFila(this.fila), msg);
         } catch (Exception e) {
             System.out.println("Houve um erro");
         }

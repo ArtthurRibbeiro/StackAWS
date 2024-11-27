@@ -41,10 +41,9 @@ public class TarefaController {
 
         try {
             msgService.enviaTarefa(tarefa);
-            tarefa.setStatus("Em processo");
             
         } catch (Exception e) {
-            // TODO: handle exception
+            tarefa.setStatus("Pendente");
         }
 
         dynamoDbTemplate.save(tarefa);
@@ -104,6 +103,7 @@ public class TarefaController {
         } else{
             tarefa.setNome(novaTarefa.getNome());
             tarefa.setDescricao(novaTarefa.getDescricao());
+            tarefa.setStatus(novaTarefa.getStatus());
             dynamoDbTemplate.save(tarefa);
             
         }

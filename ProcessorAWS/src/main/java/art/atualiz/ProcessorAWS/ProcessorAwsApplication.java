@@ -23,7 +23,7 @@ public class ProcessorAwsApplication implements CommandLineRunner{
 		// var SQS = "https://localhost.localstack.cloud:4566/000000000000/Fila_EnvioProcessamento";
 		// sqsTemplate.send(SQS, new Message("Conectado!"));
 
-		msgService.enviaMsg("Conectado!");
+		//msgService.enviaMsg("Conectado!");
 	}
 
 }

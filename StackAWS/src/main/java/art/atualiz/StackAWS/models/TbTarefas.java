@@ -32,7 +32,7 @@ public class TbTarefas {
         this.nome = nome;
         this.descricao = descricao;
 
-        this.status = "Pendente";
+        this.status = "Em processo";
         this.criadoEm = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date());
         //this.criadoEm = Instant.now();
     }
@@ -42,15 +42,6 @@ public class TbTarefas {
     public UUID getId() {
         return id;
     }
-    public String getNome() {
-        return nome;
-    }
-    public String getDescricao() {
-        return descricao;
-    }
-    public String getStatus() {
-        return status;
-    }
     
     @DynamoDbAttribute("criado_em")
     public String getCriadoEm() {
@@ -59,5 +50,10 @@ public class TbTarefas {
     @DynamoDbAttribute("concluido_em")
     public String getConcluidoEm() {
         return concluidoEm;
+    }
+
+    public void concluir(){
+        this.setStatus("Concluído");
+        this.setConcluidoEm(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date()));
     }
 }

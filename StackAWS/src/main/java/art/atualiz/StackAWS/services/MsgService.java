@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import art.atualiz.StackAWS.consumer.Message;
 import art.atualiz.StackAWS.models.TbTarefas;
 import io.awspring.cloud.sqs.operations.SqsTemplate;
 import software.amazon.awssdk.services.sqs.SqsAsyncClient;
@@ -48,7 +47,7 @@ public class MsgService {
         }*/
 
         try {
-        sqsTemplate.send(verificaFila(this.fila), new Message("Conectado!"));
+        sqsTemplate.send(verificaFila(this.fila), msg);
         } catch (Exception e) {
             System.out.println("Houve um erro");
         }

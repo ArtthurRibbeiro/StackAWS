@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "teste",
+            "request": "launch",
+            "mainClass": "art.atualiz.StackAWS.teste",
+            "projectName": "StackAWS"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-StackAwsApplication<StackAWS>",
             "request": "launch",
             "cwd": "${workspaceFolder}",

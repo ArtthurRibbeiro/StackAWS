@@ -1,6 +1,7 @@
 package art.atualiz.StackAWS.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -8,10 +9,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import art.atualiz.StackAWS.models.TbTarefas;
 
+@Service
 public class ObjectMapperService {
     @Autowired
     ObjectMapper mapper;
-    
     public String tarefaParaJson(TbTarefas tarefa) throws JsonProcessingException{
         return mapper.writeValueAsString(tarefa);
     }
