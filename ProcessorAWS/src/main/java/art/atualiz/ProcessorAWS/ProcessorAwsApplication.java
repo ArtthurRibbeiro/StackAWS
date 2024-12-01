@@ -5,25 +5,25 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import art.atualiz.ProcessorAWS.services.MsgService;
+import art.atualiz.ProcessorAWS.services.S3Service;
 
 @SpringBootApplication
 public class ProcessorAwsApplication implements CommandLineRunner{
+
+	@Autowired
+	S3Service s3Service;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProcessorAwsApplication.class, args);
 	}
 
-	
-	@Autowired
-	private MsgService msgService;
 
 	@Override
 	public void run(String... args) throws Exception {
-		// var SQS = "https://localhost.localstack.cloud:4566/000000000000/Fila_EnvioProcessamento";
-		// sqsTemplate.send(SQS, new Message("Conectado!"));
 
-		//msgService.enviaMsg("Conectado!");
+		s3Service.connectionTest();
+
+		s3Service.verificaBucket();
 	}
 
 }
