@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  localstack:
+    image: localstack/localstack:latest
+    ports:
+      - "4566:4566"  # Porta padrão para a API local
+      - "4571:4571"  # Porta opcional para debug
+    environment:
+      - SERVICES=s3,sqs,dynamodb,ec2,ecs
+      - DEBUG=1
+      - DATA_DIR=/var/lib/localstack/data
+    volumes:
+      - ./localstack/data:/var/lib/localstack/data

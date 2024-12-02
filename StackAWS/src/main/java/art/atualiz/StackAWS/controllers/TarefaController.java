@@ -37,7 +37,7 @@ public class TarefaController {
     @GetMapping("/{nome}/{desc}")
     public ResponseEntity<Void> salvar(@PathVariable("nome") String nome, @PathVariable("desc") String desc) throws JsonProcessingException {
 
-        var tarefa = new TbTarefas(nome, desc); //tarefa criada como pendente
+        var tarefa = new TbTarefas(nome, desc); //tarefa criada como em processo
 
         try {
             msgService.enviaTarefa(tarefa);

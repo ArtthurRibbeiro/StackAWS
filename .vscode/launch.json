@@ -2,6 +2,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "S3FileUpload",
+            "request": "launch",
+            "mainClass": "art.atualiz.ProcessorAWS.services.S3FileUpload",
+            "projectName": "ProcessorAWS"
+        },
+        {
+            "type": "java",
+            "name": "S3TestConnection",
+            "request": "launch",
+            "mainClass": "art.atualiz.ProcessorAWS.services.S3TestConnection",
+            "projectName": "ProcessorAWS"
+        },
+        {
+            "type": "java",
+            "name": "Teste",
+            "request": "launch",
+            "mainClass": "art.atualiz.ProcessorAWS.services.Teste",
+            "projectName": "ProcessorAWS"
+        },
+        {
+            "type": "java",
             "name": "teste",
             "request": "launch",
             "mainClass": "art.atualiz.StackAWS.teste",
